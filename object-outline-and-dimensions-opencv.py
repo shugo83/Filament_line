@@ -1,3 +1,7 @@
+# in a terminal
+# python -m pip install --user opencv-python numpy scipy matplotlib ipython jupyter pandas sympy nose
+
+
 import cv2
 import pandas as pd
 import numpy as np
