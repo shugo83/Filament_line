@@ -1,5 +1,5 @@
 # in a terminal
-# python -m pip install --user opencv-python numpy scipy matplotlib ipython jupyter pandas sympy nose
+# python -m pip install --user opencv-contrib-python numpy scipy matplotlib ipython jupyter pandas sympy nose
 
 
 import cv2
