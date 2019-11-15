@@ -23,7 +23,7 @@ def safe_div(x,y): # so we don't crash so often
 def nothing(x): # for trackbar
     pass
 
-def rescale_frame(frame, percent=25):  # make the video windows a bit smaller
+def rescale_frame(frame, percent=100):  # make the video windows a bit smaller
     width = int(frame.shape[1] * percent/ 100)
     height = int(frame.shape[0] * percent/ 100)
     dim = (width, height)
@@ -66,8 +66,9 @@ while(showLive):
     closing = cv2.morphologyEx(opening, cv2.MORPH_CLOSE, kernel)  
     closing = cv2.cvtColor(closing,cv2.COLOR_BGR2GRAY)
     
-    _,contours,hierarchy = cv2.findContours(closing,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE) # find contours with simple approximation cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE
-
+##    _,contours,hierarchy = cv2.findContours(closing,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE) # find contours with simple approximation cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE
+    contours,hierarchy = cv2.findContours(closing,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE) # find contours with simple approximation cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE
+    
     closing = cv2.cvtColor(closing,cv2.COLOR_GRAY2RGB)
     cv2.drawContours(closing, contours, -1, (128,255,0), 1)
     
@@ -138,8 +139,8 @@ while(showLive):
     dimB = dB / pixelsPerMetric
  
     # draw the object sizes on the image
-    cv2.putText(orig, "{:.1f}mm".format(dimA), (int(tltrX - 15), int(tltrY - 10)), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (255, 255, 255), 2)
-    cv2.putText(orig, "{:.1f}mm".format(dimB), (int(trbrX + 10), int(trbrY)), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (255, 255, 255), 2)
+    # cv2.putText(orig, "{:.1f}mm".format(dimA), (int(tltrX - 15), int(tltrY - 10)), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (255, 255, 255), 2)
+    # cv2.putText(orig, "{:.1f}mm".format(dimB), (int(trbrX + 10), int(trbrY)), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (255, 255, 255), 2)
 
     # compute the center of the contour
     M = cv2.moments(cnt)
